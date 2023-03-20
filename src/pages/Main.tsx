@@ -30,7 +30,9 @@ export default function Main() {
       }}
     >
       <Typography>{post?.nickname}</Typography>
-      {post?.imageURL && <Box component="img" src={post?.imageURL} sx={{ height: 400 }} />}
+      {post?.imageURL && (
+        <Box component="img" src={post?.imageURL} sx={{ height: 400, borderRadius: 1 }} />
+      )}
       <Typography variant="h4">{post?.content}</Typography>
       <MuiLink component={Link} to="/post">
         글 쓰러 가기

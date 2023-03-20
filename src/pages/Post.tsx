@@ -69,7 +69,7 @@ export default function Post() {
               component="img"
               alt="selected image"
               src={typeof newImgDir === 'string' ? newImgDir : undefined}
-              sx={{ maxHeight: 300 }}
+              sx={{ maxHeight: 300, borderRadius: 1 }}
             />
           ) : (
             <Box
@@ -121,11 +121,23 @@ export default function Post() {
       </Container>
       <Dialog open={open} onClose={handleDialogClose}>
         <DialogTitle>제출 완료!</DialogTitle>
-        <DialogContent>
+        <DialogContent
+          sx={{
+            width: 400,
+            height: 1,
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            gap: 1,
+          }}
+        >
           <DialogContentText>당신의 응답이 제출 되었습니다.</DialogContentText>
           <Typography>{data?.nickname}</Typography>
-          {data?.imageURL && <Box component="img" src={data?.imageURL} />}
-          <Typography>{data?.content}</Typography>
+          {data?.imageURL && (
+            <Box component="img" src={data?.imageURL} sx={{ height: 300, borderRadius: 1 }} />
+          )}
+          <Typography variant="subtitle1">{data?.content}</Typography>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleDialogClose} autoFocus>
