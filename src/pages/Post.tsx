@@ -1,6 +1,7 @@
 import {
   Box,
   Button,
+  ButtonBase,
   Container,
   Dialog,
   DialogActions,
@@ -73,7 +74,8 @@ export default function Post() {
               sx={{ maxHeight: 300, borderRadius: 1 }}
             />
           ) : (
-            <Box
+            <ButtonBase
+              component="label"
               sx={{
                 width: 1,
                 height: 300,
@@ -84,8 +86,14 @@ export default function Post() {
                 alignItems: 'center',
               }}
             >
+              <input
+                type="file"
+                accept="image/x-png, image/gif, image/jpeg"
+                onChange={onChangeImage}
+                hidden
+              />
               <Typography>올리고 싶은 사진이 있으면 첨부해 주세요!</Typography>
-            </Box>
+            </ButtonBase>
           )}
           <Button variant="outlined" component="label" sx={{ mt: 2 }}>
             사진 선택
