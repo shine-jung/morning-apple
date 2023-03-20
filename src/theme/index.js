@@ -1,21 +1,21 @@
-import PropTypes from "prop-types";
-import { useMemo } from "react";
+import PropTypes from 'prop-types';
+import { useMemo } from 'react';
 // @mui
-import { CssBaseline } from "@mui/material";
+import { CssBaseline } from '@mui/material';
 import {
   createTheme,
   StyledEngineProvider,
   ThemeProvider as MUIThemeProvider,
-} from "@mui/material/styles";
+} from '@mui/material/styles';
 //
-import palette from "./palette";
-import typography from "./typography";
-import shadows from "./shadows";
-import customShadows from "./customShadows";
-import componentsOverride from "./overrides";
-import GlobalStyles from "./globalStyles";
-import { useRecoilValue } from "recoil";
-import { themeModeState } from "../store/atoms";
+import palette from './palette';
+import typography from './typography';
+import shadows from './shadows';
+import customShadows from './customShadows';
+import componentsOverride from './overrides';
+import GlobalStyles from './globalStyles';
+import { useRecoilValue } from 'recoil';
+import { themeModeState } from '../store/atoms';
 
 // ----------------------------------------------------------------------
 
@@ -31,11 +31,11 @@ export default function ThemeProvider({ children }) {
       palette: palette(themeMode),
       typography,
       shape: { borderRadius: 8 },
-      direction: "ltr",
+      direction: 'ltr',
       shadows: shadows(themeMode),
       customShadows: customShadows(themeMode),
     }),
-    [themeMode]
+    [themeMode],
   );
 
   const theme = createTheme(themeOptions);
