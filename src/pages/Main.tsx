@@ -1,16 +1,15 @@
 import { Box, Link as MuiLink, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { getPosts } from '../apis/post';
+import { getTodayPost } from '../apis/post';
 import { IPost } from '../types/post';
 
 export default function Main() {
-  const [posts, setPosts] = useState<IPost[]>([]);
-  const post = posts[Math.floor(Math.random() * posts.length)];
+  const [post, setPost] = useState<IPost>();
 
   const loadData = async () => {
-    const response = await getPosts();
-    setPosts(response);
+    const response = await getTodayPost();
+    setPost(response);
   };
 
   useEffect(() => {
@@ -33,7 +32,9 @@ export default function Main() {
       {post?.imageURL && (
         <Box component="img" src={post?.imageURL} sx={{ height: 400, borderRadius: 1 }} />
       )}
-      <Typography variant="h4">{post?.content}</Typography>
+      <Typography variant="h4" sx={{ whiteSpace: 'pre-line' }}>
+        {post?.content}
+      </Typography>
       <MuiLink component={Link} to="/post">
         글 쓰러 가기
       </MuiLink>

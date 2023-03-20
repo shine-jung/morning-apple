@@ -1,7 +1,9 @@
 import {
+  Backdrop,
   Box,
   Button,
   ButtonBase,
+  CircularProgress,
   Container,
   Dialog,
   DialogActions,
@@ -20,7 +22,6 @@ import { addPost, getPost } from '../apis/post';
 import { IFormData, IPost } from '../types/post';
 
 export default function Post() {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isLoading, setIsLoading] = useState(false);
   const [newImgDir, setNewImgDir] = useState<string | ArrayBuffer | null>(null);
   const [open, setOpen] = useState(false);
@@ -30,6 +31,7 @@ export default function Post() {
     handleSubmit,
     formState: { errors },
     setValue,
+    reset,
   } = useForm<IFormData>();
   const onValid = async (formData: IFormData) => {
     setIsLoading(true);
@@ -37,6 +39,8 @@ export default function Post() {
     const response = await getPost(id);
     setData(response);
     handleDialogOpen();
+    reset();
+    setNewImgDir(null);
     setIsLoading(false);
   };
   const onChangeImage = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -146,7 +150,9 @@ export default function Post() {
           {data?.imageURL && (
             <Box component="img" src={data?.imageURL} sx={{ height: 300, borderRadius: 1 }} />
           )}
-          <Typography variant="subtitle1">{data?.content}</Typography>
+          <Typography variant="subtitle1" sx={{ whiteSpace: 'pre-line' }}>
+            {data?.content}
+          </Typography>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleDialogClose} autoFocus>
@@ -154,6 +160,9 @@ export default function Post() {
           </Button>
         </DialogActions>
       </Dialog>
+      <Backdrop sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }} open={isLoading}>
+        <CircularProgress color="inherit" />
+      </Backdrop>
     </>
   );
 }
