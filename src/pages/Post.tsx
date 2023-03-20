@@ -19,6 +19,7 @@ import { addPost, getPost } from '../apis/post';
 import { IFormData, IPost } from '../types/post';
 
 export default function Post() {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isLoading, setIsLoading] = useState(false);
   const [newImgDir, setNewImgDir] = useState<string | ArrayBuffer | null>(null);
   const [open, setOpen] = useState(false);
