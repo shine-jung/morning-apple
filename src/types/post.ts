@@ -10,6 +10,6 @@ export interface IPost {
   id: string;
   nickname: string;
   content: string;
-  imageURL: string;
+  imageURL: string | null;
   createdAt: Timestamp;
 }

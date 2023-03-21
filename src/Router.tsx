@@ -7,22 +7,10 @@ import Post from './pages/Post';
 function Router() {
   return (
     <BrowserRouter>
-      <Box
-        sx={{
-          width: 1,
-          height: 1,
-          minHeight: 800,
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <Routes>
-          <Route path="/" element={<Main />} />
-          <Route path="/post" element={<Post />} />
-        </Routes>
-      </Box>
+      <Routes>
+        <Route path="/" element={<Main />} />
+        <Route path="/post" element={<Post />} />
+      </Routes>
       <Box sx={{ position: 'fixed', bottom: 16, right: 16 }}>
         <ThemeModeToggle />
       </Box>

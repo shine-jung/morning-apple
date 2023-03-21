@@ -1,5 +1,5 @@
 {
-  "name": "special-tomorrow",
+  "name": "morning-apple",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -24,6 +24,7 @@
     "notistack": "^2.0.8",
     "react": "^18.2.0",
     "react-apexcharts": "^1.4.0",
+    "react-countdown": "^2.3.5",
     "react-dom": "^18.2.0",
     "react-helmet-async": "^1.3.0",
     "react-hook-form": "^7.43.0",
