@@ -1,10 +1,13 @@
 import { Fireworks } from '@fireworks-js/react';
 import { Box, Button, Link as MuiLink, Typography } from '@mui/material';
-import { useEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { getTodayPost } from '../apis/post';
 import { IPost } from '../types/post';
+import { imageURLObj } from '../utils/commons';
+import { getText } from '../utils/randomText';
+import { imagePreload } from '../utils/functions';
 
 export default function Main() {
   const [post, setPost] = useState<IPost>();
@@ -16,51 +19,26 @@ export default function Main() {
     const response = await getTodayPost();
     setPost(response);
   };
-
-  const getText = () => {
-    const textList = [
-      'Tamra',
-      'Lin',
-      'Dana',
-      'Doris',
-      'Kihyun',
-      'Peter',
-      'Marcelo',
-      'Lizzette',
-      'Pauline',
-      'Fumiko',
-      'Tomasa',
-      'Bertha',
-      'Antoinette',
-      'Tianna',
-      'Ammie',
-      'Victorina',
-      'Marlon',
-      'Jules',
-      'Arletha',
-      'Ellyn',
-      'Karol',
-      'Corrin',
-      'Josephine',
-    ];
-    const choice = textList[Math.floor(Math.random() * textList.length)];
-    return choice;
-  };
-  const changeText = () => {
-    const text = getText();
-    setText(text);
-  };
   const onClickShow = () => {
     setShow(true);
-    let timer = setInterval(() => {
-      changeText();
+    const timer = setInterval(() => {
+      const text = getText();
+      setText(text);
     }, 25);
     setTimeout(() => {
       clearInterval(timer);
       setIsLoading(true);
     }, 5000);
   };
-
+  useLayoutEffect(() => {
+    imagePreload(imageURLObj.initialImage);
+    imagePreload(imageURLObj.loadingImage);
+  }, []);
+  useEffect(() => {
+    if (post) {
+      imagePreload(post.imageURL);
+    }
+  }, [post]);
   useEffect(() => {
     loadData();
   }, []);
@@ -101,11 +79,7 @@ export default function Main() {
         </Typography>
         <Box
           component="img"
-          src={
-            show
-              ? 'https://art.pixilart.com/2cbb96b2bfb0e8a.gif'
-              : 'https://images.unsplash.com/photo-1484069560501-87d72b0c3669?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80'
-          }
+          src={show ? imageURLObj.loadingImage : imageURLObj.initialImage}
           sx={{ height: '50%', borderRadius: 1, display: isShowPost ? 'none' : 'flex' }}
         />
         <AnimatePresence>
