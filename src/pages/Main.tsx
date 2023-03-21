@@ -19,6 +19,12 @@ export default function Main() {
 
   const getText = () => {
     const textList = [
+      'Tamra',
+      'Lin',
+      'Dana',
+      'Doris',
+      'Kihyun',
+      'Peter',
       'Marcelo',
       'Lizzette',
       'Pauline',
@@ -100,7 +106,7 @@ export default function Main() {
               ? 'https://art.pixilart.com/2cbb96b2bfb0e8a.gif'
               : 'https://images.unsplash.com/photo-1484069560501-87d72b0c3669?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80'
           }
-          sx={{ height: 400, borderRadius: 1, display: isShowPost ? 'none' : 'flex' }}
+          sx={{ height: '50%', borderRadius: 1, display: isShowPost ? 'none' : 'flex' }}
         />
         <AnimatePresence>
           {isShowPost && post?.imageURL && (
@@ -109,7 +115,7 @@ export default function Main() {
               initial={{ opacity: 0, scale: 0 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.5, duration: 0.5 }}
-              style={{ height: 400, borderRadius: 8 }}
+              style={{ height: '50%', borderRadius: 8 }}
             />
           )}
         </AnimatePresence>
@@ -118,11 +124,11 @@ export default function Main() {
             {isShowPost ? post.content : text}
           </Typography>
         ) : (
-          <Button className="glow-on-hover" onClick={onClickShow}>
+          <Button className="glow-on-hover" onClick={onClickShow} disableRipple>
             클릭해서 확인하기
           </Button>
         )}
-        <MuiLink component={Link} to="/post">
+        <MuiLink component={Link} to="/post" mt={4}>
           글 쓰러 가기
         </MuiLink>
       </Box>
