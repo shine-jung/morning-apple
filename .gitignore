@@ -25,5 +25,5 @@ yarn-error.log*
 # dot env
 .env
 
-# cache
-*.cache
+# .firebase cache
+.firebase
