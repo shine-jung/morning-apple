@@ -5,6 +5,7 @@
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
+    "@fireworks-js/react": "^2.10.2",
     "@mui/icons-material": "^5.11.0",
     "@mui/material": "^5.11.7",
     "@mui/x-data-grid": "^5.17.22",
@@ -15,6 +16,7 @@
     "@types/node": "^16.18.12",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.10",
+    "browser-image-compression": "^2.0.2",
     "firebase": "^9.18.0",
     "firebase-admin": "^11.5.0",
     "firebase-functions": "^4.2.1",

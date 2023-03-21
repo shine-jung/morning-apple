@@ -62,13 +62,30 @@ export default function Post() {
   return (
     <>
       <Container maxWidth="sm" component="form" onSubmit={handleSubmit(onValid)}>
-        <InputLabel>닉네임</InputLabel>
+        <InputLabel sx={{ mb: 1, color: 'text.primary' }}>닉네임(익명 가능)</InputLabel>
         <TextField
           {...register('nickname', { required: '필수 입력 항목입니다' })}
           size="small"
+          placeholder="홍길동"
           helperText={errors.nickname?.message}
+          error={Boolean(errors.nickname?.message)}
         />
-        <Box sx={{ height: 16 }} />
+        <Box sx={{ height: 24 }} />
+        <InputLabel sx={{ mb: 1, color: 'text.primary' }}>한 줄 설명</InputLabel>
+        <TextField
+          {...register('content', { required: '필수 입력 항목입니다' })}
+          size="small"
+          placeholder="내일의 이슈왕이 되어보세요!"
+          helperText={errors.content?.message}
+          error={Boolean(errors.content?.message)}
+          multiline
+          maxRows={2}
+          fullWidth
+        />
+        <Box sx={{ height: 24 }} />
+        <InputLabel sx={{ mb: 1, color: 'text.primary' }}>
+          함께 올리고 싶은 사진이 있다면 추가로 올려주세요!
+        </InputLabel>
         <Box>
           {newImgDir ? (
             <Box
@@ -81,13 +98,15 @@ export default function Post() {
             <ButtonBase
               component="label"
               sx={{
-                width: 1,
+                width: 300,
                 height: 300,
                 backgroundColor: 'divider',
                 borderRadius: 1,
                 display: 'flex',
+                flexDirection: 'column',
                 justifyContent: 'center',
                 alignItems: 'center',
+                color: 'text.secondary',
               }}
             >
               <input
@@ -96,33 +115,26 @@ export default function Post() {
                 onChange={onChangeImage}
                 hidden
               />
-              <Typography>올리고 싶은 사진이 있으면 첨부해 주세요!</Typography>
+              <Typography>사진과 함께 소개하기</Typography>
+              <Typography>Click!</Typography>
             </ButtonBase>
           )}
-          <Button variant="outlined" component="label" sx={{ mt: 2 }}>
-            사진 선택
-            <input
-              type="file"
-              accept="image/x-png, image/gif, image/jpeg"
-              onChange={onChangeImage}
-              hidden
-            />
-          </Button>
+          {newImgDir && (
+            <Button variant="outlined" component="label" sx={{ mt: 2 }}>
+              사진 바꾸기
+              <input
+                type="file"
+                accept="image/x-png, image/gif, image/jpeg"
+                onChange={onChangeImage}
+                hidden
+              />
+            </Button>
+          )}
         </Box>
-        <Box sx={{ height: 16 }} />
-        <InputLabel>설명</InputLabel>
-        <TextField
-          {...register('content', { required: '필수 입력 항목입니다' })}
-          size="small"
-          helperText={errors.content?.message}
-          multiline
-          minRows={2}
-          fullWidth
-        />
-        <Box sx={{ height: 16 }} />
-        <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-          <Button variant="contained" type="submit">
-            제출
+        <Box sx={{ height: 64 }} />
+        <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+          <Button variant="contained" type="submit" sx={{ width: 320 }}>
+            제출하기
           </Button>
         </Box>
         <Box sx={{ height: 16 }} />
@@ -150,7 +162,7 @@ export default function Post() {
           {data?.imageURL && (
             <Box component="img" src={data?.imageURL} sx={{ height: 300, borderRadius: 1 }} />
           )}
-          <Typography variant="subtitle1" sx={{ whiteSpace: 'pre-line' }}>
+          <Typography variant="subtitle1" sx={{ whiteSpace: 'pre-line', textAlign: 'center' }}>
             {data?.content}
           </Typography>
         </DialogContent>

@@ -1,6 +1,7 @@
 import { SnackbarProvider } from 'notistack';
 import Router from './Router';
 import ThemeProvider from './theme';
+import './App.css';
 
 function App() {
   return (

@@ -11,6 +11,7 @@ function Router() {
         sx={{
           width: 1,
           height: 1,
+          minHeight: 800,
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
