@@ -67,7 +67,11 @@ export default function Admin() {
               <Box
                 sx={{
                   display: 'grid',
-                  gridTemplateColumns: `repeat(4, 1fr)`,
+                  gridTemplateColumns: {
+                    sm: `repeat(2, 1fr)`,
+                    md: `repeat(3, 1fr)`,
+                    lg: `repeat(4, 1fr)`,
+                  },
                   gap: 3,
                   pb: 8,
                 }}
@@ -97,7 +101,7 @@ export default function Admin() {
                     >
                       {post.content}
                     </Typography>
-                    <Box sx={{ width: 1, display: 'flex', justifyContent: 'flex-end' }}>
+                    <Box sx={{ width: 1, display: 'flex', justifyContent: 'flex-end', mt: 'auto' }}>
                       <Button
                         variant="contained"
                         color="error"
