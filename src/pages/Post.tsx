@@ -152,16 +152,17 @@ export default function Post() {
         <DialogContent
           sx={{
             width: 400,
+            maxWidth: 1,
             height: 1,
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'center',
             alignItems: 'center',
-            gap: 1,
+            gap: 2,
           }}
         >
           <Alert sx={{ width: 1 }}>당신의 응답이 제출되었습니다.</Alert>
-          <Typography sx={{ my: 1 }}>닉네임: {data?.nickname}</Typography>
+          <Typography>닉네임: {data?.nickname}</Typography>
           {data?.imageURL && (
             <Box component="img" src={data?.imageURL} sx={{ height: 300, borderRadius: 1 }} />
           )}
