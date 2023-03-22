@@ -9,6 +9,13 @@ export const giveZeroPadding = (num: number) => {
   return num < 10 && num >= 0 ? '0' + num : num;
 };
 
+export const displayTimeKo = (date: Date) =>
+  `${date.getFullYear()}년 ${giveZeroPadding(date.getMonth() + 1)}월 ${giveZeroPadding(
+    date.getDate(),
+  )}일 ${giveZeroPadding(date.getHours())}시 ${giveZeroPadding(
+    date.getMinutes(),
+  )}분 ${giveZeroPadding(date.getSeconds())}초`;
+
 export const getNextDate = () => {
   const date = new Date();
   if (
