@@ -103,7 +103,7 @@ export default function Main() {
             <CenterBox>
               <Box component="img" src={imageSrc.loadingImage} sx={{ height: '50%' }} />
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 3 }}>
-                <Typography sx={{ fontSize: 48, fontWeight: 700 }}>오늘의 사과 찾는중</Typography>
+                <Typography sx={{ fontSize: 48, fontWeight: 700 }}>오늘의 사과 찾는 중</Typography>
                 <BouncingDotsLoader />
               </Box>
             </CenterBox>
