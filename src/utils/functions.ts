@@ -11,7 +11,10 @@ export const giveZeroPadding = (num: number) => {
 
 export const getNextDate = () => {
   const date = new Date();
-  if (date.getHours() > updateTime.hour) {
+  if (
+    date.getHours() > updateTime.hour ||
+    (date.getHours() >= updateTime.hour && date.getMinutes() > updateTime.minute)
+  ) {
     date.setDate(date.getDate() + 1);
   }
   date.setHours(updateTime.hour);

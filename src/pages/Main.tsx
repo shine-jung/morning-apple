@@ -42,14 +42,15 @@ export default function Main() {
     const response = await getTodayPost();
     setPost(response);
   };
-  const onClickShow = () => {
+  const handleShow = () => {
     setShow(true);
     setTimeout(() => {
       setIsLoading(false);
     }, 5000);
   };
-  const onCompleteCountdown = () => {
-    loadData();
+  const handleCompleteCountdown = async () => {
+    await loadData();
+    handleShow();
   };
   useLayoutEffect(() => {
     imagePreload(imageSrc.logoImage);
@@ -113,7 +114,7 @@ export default function Main() {
         <CenterBox sx={{ gap: 5 }}>
           <Countdown
             date={nextDate}
-            onComplete={onCompleteCountdown}
+            onComplete={handleCompleteCountdown}
             renderer={renderer}
             daysInHours
           />
@@ -124,7 +125,7 @@ export default function Main() {
             <Box component="img" src={imageSrc.logoImage} sx={{ height: 200 }} />
             <Typography color="text.secondary">아침에 사과</Typography>
           </Box>
-          <Button variant="contained" onClick={onClickShow}>
+          <Button variant="contained" onClick={handleShow}>
             클릭해서 확인하기
           </Button>
           <Link to="/post">

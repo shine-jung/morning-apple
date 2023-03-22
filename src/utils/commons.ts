@@ -10,5 +10,5 @@ export const imageSrc = {
 
 export const updateTime = {
   hour: 8,
-  minute: 50,
+  minute: 55,
 };
