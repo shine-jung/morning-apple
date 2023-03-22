@@ -56,6 +56,7 @@ export default function Main() {
     imagePreload(imageSrc.logoImage);
     imagePreload(imageSrc.loadingImage);
     imagePreload(imageSrc.alternativeImage);
+    imagePreload(imageSrc.qrImage);
   }, []);
   useEffect(() => {
     if (post?.imageURL) {
@@ -133,6 +134,9 @@ export default function Main() {
           </Link>
         </CenterBox>
       )}
+      <Box sx={{ position: 'fixed', bottom: 32, left: 32, display: { xs: 'none', md: 'flex' } }}>
+        <Box component="img" src={imageSrc.qrImage} sx={{ width: 150, borderRadius: 1 }} />
+      </Box>
     </>
   );
 }
