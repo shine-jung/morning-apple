@@ -13,22 +13,27 @@ import { Button } from '../components/common/Button';
 import { CenterBox } from '../components/common/CenterBox';
 
 const renderer = ({ hours, minutes, seconds, completed }: any) => {
-  if (completed) {
-    return (
-      <Typography color="primary.main" variant="h5">
-        새로운 소식이 업데이트 되었습니다!
+  const isUpcoming = hours === 0 && minutes < 1;
+
+  return (
+    <motion.div
+      animate={isUpcoming && { scale: [1, 1.1, 1] }}
+      transition={{ ease: 'easeInOut', repeat: Infinity, duration: 1 }}
+    >
+      <Typography color="primary.main" variant="h4" fontWeight={completed ? 600 : 500}>
+        {completed ? (
+          '새로운 소식이 업데이트 되었습니다!'
+        ) : (
+          <>
+            <span style={{ fontWeight: 400, fontFamily: "'Chivo Mono', monospace" }}>
+              {giveZeroPadding(hours)} : {giveZeroPadding(minutes)} : {giveZeroPadding(seconds)}
+            </span>
+            &nbsp;&nbsp;뒤에 오픈 예정
+          </>
+        )}
       </Typography>
-    );
-  } else {
-    return (
-      <Typography color="primary.main" variant="h5" fontWeight={500}>
-        <span style={{ fontWeight: 400, fontFamily: "'Chivo Mono', monospace" }}>
-          {giveZeroPadding(hours)} : {giveZeroPadding(minutes)} : {giveZeroPadding(seconds)}
-        </span>
-        &nbsp;&nbsp;뒤에 오픈 예정
-      </Typography>
-    );
-  }
+    </motion.div>
+  );
 };
 
 export default function Main() {
@@ -48,9 +53,8 @@ export default function Main() {
       setIsLoading(false);
     }, 5000);
   };
-  const handleCompleteCountdown = async () => {
-    await loadData();
-    handleShow();
+  const handleCompleteCountdown = () => {
+    loadData();
   };
   useLayoutEffect(() => {
     imagePreload(imageSrc.logoImage);
